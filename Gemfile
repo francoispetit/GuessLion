@@ -21,7 +21,7 @@ gem 'gon'
 gem 'oj'
 gem 'kaminari'
 gem 'redis'
-
+gem 'simple_form'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
