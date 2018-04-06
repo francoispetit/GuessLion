@@ -1,0 +1,10 @@
+
+
+<%= image_tag @user_to_guess[0].avatar.url(:thumb) %>
+<p> Quel est son prénom ? </p>
+
+<% @name_proposal.each do |name| %>
+
+  <%= link_to name, root_path, class:"btn btn-primary", id:name %>
+
+<% end %>
