@@ -22,6 +22,7 @@ gem 'oj'
 gem 'kaminari'
 gem 'redis'
 gem 'simple_form'
+gem 'google_drive'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

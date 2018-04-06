@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Owimbowe</h1>
+
+<p>Mémorise les lions</p>
+
+<%= link_to "Users", users_path %>
+
+<%= link_to "Enregistre-toi", new_user_registration_path %>
+<%= link_to "Connecte-toi", new_user_registration_path %>
+<%= link_to "Edite", edit_user_registration_path(current_user) %>
+
+
+<%= link_to "Teste les prénoms", edit_user_registration_path(current_user) %>
