@@ -35,5 +35,16 @@ class UsersController < ApplicationController
 
   end
 
+  def check
+    if params[:commit] == User.find(params[:guess_id]).first_name
+      flash[:success] = "Oui, c'est bien #{User.find(params[:guess_id]).first_name}"
+    else
+      flash[:danger] = "Non, c'était #{User.find(params[:guess_id]).first_name}"
+    end
+    # vérifier si @user_to_guess.first_name == le prénom choisi (param : id du bouton)
+    # si juste : flash "bravo"
+    # si faux : flash avec prénom
+    # option continuer
+  end
 
 end

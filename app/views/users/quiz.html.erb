@@ -3,8 +3,12 @@
 <%= image_tag @user_to_guess[0].avatar.url(:thumb) %>
 <p> Quel est son prénom ? </p>
 
-<% @name_proposal.each do |name| %>
+<% @name_proposal.shuffle.each do |name| %>
 
-  <%= link_to name, root_path, class:"btn btn-primary", id:name %>
+  <%= form_tag('/quiz', method: :post) do %>
+    <div><%= hidden_field_tag :guess_id, @user_to_guess[0].id %></div>
+    <div><%= hidden_field_tag :name, name %></div>
+    <div><%= submit_tag name, class:"btn btn-primary" %></div>
+  <% end %>
 
 <% end %>
