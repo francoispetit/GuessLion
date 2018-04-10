@@ -1,0 +1,42 @@
+<div class="col-md-2 col-sm-4 sidebar1">
+  <% if user_signed_in? %>
+  <div class="logo">
+    <%= image_tag current_user.avatar.url(:thumb), classs:"img-responsive center-block", alt:'logo' %>
+  </div>
+  <% end %>
+  <br>
+  <div class="left-navigation">
+    <ul class="list">
+      <h5>
+        <strong>ACCUEIL</strong>
+      </h5>
+      <li><%= link_to "Accueil", root_path %></li>
+    </ul>
+    <ul class="list">
+      <h5>
+        <strong>QUIZ</strong>
+      </h5>
+      <li><%= link_to "Prénoms", quiz_path %></li>
+      <% if DateTime.now < 2018-12-24 %>
+        <li><%= link_to "Anecdotes ?", quiz_fun_path %></li>
+      <% end %>
+      <% if DateTime.now < 2018-12-24 %>
+        <li><%= link_to "Annuaire", users_path %></li>
+      <% end %>
+    </ul>
+
+    <br>
+
+    <ul class="list">
+      <h5>
+        <strong>PROFIL</strong>
+      </h5>
+      <% if user_signed_in? %>
+        <li><%= link_to "Edite", edit_user_registration_path(current_user) %></li>
+      <% else %>
+        <li><%= link_to "Inscris-toi", new_user_registration_path %></li>
+        <li><%= link_to "Déjà inscrit ? Connecte-toi", new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

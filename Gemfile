@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '5.1.5'
+gem 'rails', '5.1.6'
 gem 'devise'
 gem 'puma',         '3.9.1'
 gem 'sass-rails',   '5.0.6'
@@ -21,12 +21,14 @@ gem 'gon'
 gem 'oj'
 gem 'kaminari'
 gem 'redis'
-
+gem 'simple_form'
+gem 'google_drive'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
   gem 'rspec-rails', '~> 3.7'
+  gem 'pry'
 end
 
 group :development do
