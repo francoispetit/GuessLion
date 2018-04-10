@@ -17,71 +17,109 @@ ws = session.spreadsheet_by_key("1Pn1_-YvROQJEZDxL2At_aSjYn9tMXo826yk0EvC_Gig").
 User.delete_all
 
 
-# usertable = []
-# i = 0
-# (2..ws.num_rows).each do |row|
-#     hashuser = {}
-#     hashuser[:first_name] = ws[row,1]
-#     hashuser[:last_name] = ws[row,2]
-#     hashuser[:email] = ws[row,3]
-#     usertable << hashuser
-#     byebug
-#     i += 1
-# end
-#
-# usertable.each do |user|
-#   User.create(
-#     :first_name => user[0],
-#     :last_name => user[1],
-#     :email => user[2],
-#     :password => "123456"
-#   )
-# end
-#
+usertable = []
+i = 0
+(2..ws.num_rows).each do |row|
+    hashuser = {}
+    hashuser[:first_name] = ws[row,1]
+    hashuser[:last_name] = ws[row,2]
+    hashuser [:female] = ws[row,3]
+    hashuser[:email] = ws[row,4]
+    hashuser[:funfact] = ws[row,7]
+    hashuser [:linkedin] = ws[row,8]
+    hashuser [:dev] = ws[row,9]
+    hashuser [:product] = ws[row,10]
+    hashuser [:growth] = ws[row,12]
+    hashuser [:sales] = ws[row,11]
+    hashuser [:ops] = ws[row,13]
+    hashuser[:photopath] = ws[row,5] + ws[row,6] + ".jpg"
+    usertable << hashuser
+    binding.pry
+    i += 1
+end
+
+usertable.each do |user|
+  created_user = User.create(
+    :first_name => user[:first_name],
+    :last_name => user[:last_name],
+    :email => user[:email],
+    :password => "123456",
+    :isfemale => user[:female],
+    :linkedin_url => user[:linkedin],
+    :dev => user[:dev],
+    :growth => user[:growth],
+    :product => user[:product],
+    :sales => user[:sales],
+    :fun_fact_one => user[:funfact]
+    # :avatar => File.open("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}", 'rb')
+  )
+  binding.pry
+  photo = session.file_by_title(user[:photopath])
+  photo.download_to_file("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}")
+  binding.pry
+  created_user.avatar = File.open("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}", 'rb')
+  created_user.save
+
+end
+
+
+
 # User.all.each do |user|
 #   img = File.open(File.join(Rails.root, "app/assets/images/medium", "#{user.first_name}#{user.last_name}.jpg"),'rb')
 #   user.update(avatar: img)
 # end
 
-User.create(
-  first_name: "Adrien",
-  last_name: "FOLIE",
-  email: "adrien@mail.com",
-  password: "123456",
-  avatar: File.open("#{Rails.root}/app/assets/images/medium/AdrienFOLIE.jpg", 'rb')
-)
-
-User.create(
-  first_name: "Alexandre",
-  last_name: "HERCOVA",
-  email: "alexandre@mail.com",
-  password: "123456",
-  avatar: File.open("#{Rails.root}/app/assets/images/medium/AlexandreHERCOVA.jpg", 'rb')
-)
-
-User.create(
-  first_name: "Amin",
-  last_name: "BOUHASSOUNE",
-  email: "amin@mail.com",
-  password: "123456",
-  avatar: File.open("#{Rails.root}/app/assets/images/medium/AminBOUHASSOUNE.jpg", 'rb')
-)
-
-User.create(
-  first_name: "Anam",
-  last_name: "NASIR",
-  email: "anam@mail.com",
-  password: "123456",
-  avatar: File.open("#{Rails.root}/app/assets/images/medium/AnamNASIR.jpg", 'rb')
-)
-
-User.create(
-  first_name: "Angélique",
-  last_name: "FEY",
-  email: "angélique@mail.com",
-  password: "123456",
-  avatar: File.open("#{Rails.root}/app/assets/images/medium/AngéliqueFEY.jpg", 'rb')
-)
+# User.create(
+#   first_name: "Adrien",
+#   last_name: "FOLIE",
+#   isfemale: false,
+#   email: "adrien@mail.com",
+#   password: "123456",
+#   fun_fact_one: "Je connais l'intégrale de Léo Ferré")
+#
+#
+#   avatar: File.open("#{Rails.root}/app/assets/images/medium/AdrienFOLIE.jpg", 'rb')
+# )
+#
+# User.create(
+#   first_name: "Alexandre",
+#   last_name: "HERCOVA",
+#   isfemale: false,
+#   email: "alexandre@mail.com",
+#   password: "123456",
+#   fun_fact_one: "Je connais 360 recettes de cocktail",
+#   avatar: File.open("#{Rails.root}/app/assets/images/medium/AlexandreHERCOVA.jpg", 'rb')
+# )
+#
+# User.create(
+#   first_name: "Amin",
+#   last_name: "BOUHASSOUNE",
+#   isfemale: false,
+#   email: "amin@mail.com",
+#   password: "123456",
+#   fun_fact_one: "J'ai écrit les paroles d'une chanson de Booba",
+#   avatar: File.open("#{Rails.root}/app/assets/images/medium/AminBOUHASSOUNE.jpg", 'rb')
+# )
+#
+# User.create(
+#   first_name: "Anam",
+#   last_name: "NASIR",
+#   email: "anam@mail.com",
+#   isfemale: true,
+#   password: "123456",
+#   fun_fact_one: "J'ai sauté 10 fois en parachute",
+#   avatar: File.open("#{Rails.root}/app/assets/images/medium/AnamNASIR.jpg", 'rb')
+# )
+#
+# User.create(
+#   first_name: "Angélique",
+#   last_name: "FEY",
+#   isfemale: true,
+#   email: "angélique@mail.com",
+#   password: "123456",
+#   fun_fact_one: "Je suis pizzaïolo le mercredi soir",
+#   avatar: File.open("#{Rails.root}/app/assets/images/medium/AngéliqueFEY.jpg", 'rb')
+# )
 
 
 #

@@ -1,0 +1,15 @@
+
+
+<%= image_tag @user_fun_to_guess[0].avatar.url(:thumb) %>
+<p><%= @user_fun_to_guess[0].first_name %><p>
+<p> A ton avis, quelle est son anecdote personnelle ? </p>
+
+<% @fun_proposal.shuffle.each do |fun| %>
+
+  <%= form_tag('/quiz_fun', method: :post) do %>
+    <div><%= hidden_field_tag :guess_id, @user_fun_to_guess[0].id %></div>
+    <div><%= hidden_field_tag :fun_fact_one, fun %></div>
+    <div><%= submit_tag fun, class:"btn btn-primary mb-2" %></div>
+  <% end %>
+
+<% end %>

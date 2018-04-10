@@ -1,6 +1,32 @@
-<% @users.each do |user| %>
+<div class="container">
+  <div class="row">
 
-  <%= image_tag user.avatar.url(:thumb) %>
-  <%= user.email %>
+    <% @users.each do |user| %>
+      <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card border-light">
 
-<% end %>
+          <%= image_tag user.avatar.url(:thumb), class:"rounded mx-auto d-block", style:'height:90;width:120px;' %>
+
+          <div class="card-body">
+            <p class="card-title text-primary"><%= user.first_name %></p>
+              <div class="m-1 text-muted"><%= user.email %></div>
+              <p><small class="card-text mb-auto font-italic"><%= user.fun_fact_one %></small></p>
+          </div>
+
+            <% if user.linkedin_url != nil %>
+            <div class="card-footer">
+              <%= fa_icon "linkedin", style: 'color:blue' %>
+              </div>
+            <% end %>
+
+          <div class="card-footer">
+            <% if user.dev == "mentor" %>
+            <span class="badge badge-success"> <%= fa_icon "code" %> dev </span>
+            <% end %>
+          </div>
+        </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>

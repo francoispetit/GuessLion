@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406211420) do
+ActiveRecord::Schema.define(version: 20180409225521) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,6 +35,11 @@ ActiveRecord::Schema.define(version: 20180406211420) do
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.text "stats"
+    t.boolean "isfemale"
+    t.string "dev"
+    t.string "growth"
+    t.string "sales"
+    t.string "product"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
