@@ -10,7 +10,7 @@
 
 require 'google_drive'
 
-session = GoogleDrive::Session.from_service_account_key(ENV['DRIVE_CRED'])
+session = GoogleDrive::Session.from_service_account_key('driveconfig0.json'])
 ws = session.spreadsheet_by_key("1Pn1_-YvROQJEZDxL2At_aSjYn9tMXo826yk0EvC_Gig").worksheets[1]
 
 User.delete_all
