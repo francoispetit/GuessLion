@@ -15,13 +15,41 @@
 
             <% if user.linkedin_url != nil %>
             <div class="card-footer">
-              <%= fa_icon "linkedin", style: 'color:blue' %>
+              <%= link_to user.linkedin_url do %>
+                <%= fa_icon "linkedin", style: 'color:blue' %>
+              <% end %>
               </div>
             <% end %>
 
           <div class="card-footer">
+            <p>Je peux vous aider avec</p>
             <% if user.dev == "mentor" %>
-            <span class="badge badge-success"> <%= fa_icon "code" %> dev </span>
+            <span class="badge badge-success"> <i class="fa fa-code"></i> dev </span>
+            <% end %>
+            <% if user.growth == "mentor" %>
+            <span class="badge badge-success"> <%= fa_icon "chart-line" %> growth </span>
+            <% end %>
+            <% if user.product == "mentor" %>
+
+            <span class="badge badge-success"><i class="fas fa-lightbulb"></i> product </span>
+            <% end %>
+            <% if user.sales == "mentor" %>
+            <span class="badge badge-success"> <%= fa_icon "bullseye" %> sales </span>
+            <% end %>
+          </div>
+          <div class="card-footer">
+            <p>J'ai envie d'apprendre</p>
+            <% if user.dev == "apprend" %>
+            <span class="badge badge-secondary"> <%= fa_icon "code" %> dev </span>
+            <% end %>
+            <% if user.growth == "mentor" %>
+            <span class="badge badge-secondary"> <%= fa_icon "chart-line" %> growth </span>
+            <% end %>
+            <% if user.product == "mentor" %>
+            <span class="badge badge-secondary"> <%= fa_icon "lightbulb" %> product </span>
+            <% end %>
+            <% if user.sales == "mentor" %>
+            <span class="badge badge-secondary"> <%= fa_icon "bullseye" %> sales </span>
             <% end %>
           </div>
         </div>

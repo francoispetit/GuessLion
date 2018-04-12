@@ -11,7 +11,6 @@
   height:100%;
 }
 
-
 #background {
   height:100%;
 }
@@ -20,9 +19,10 @@
 }
 
 #jumbo {
-  max-height: 200px;
+  max-height: 250px;
+  background-color:white;
 }
 
-#jumbo h1, p {
+#jumbo h1, #jumbo p {
     color: green;
 }

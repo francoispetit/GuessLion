@@ -1,13 +1,13 @@
-<div id="background" class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center" style="background: url(<%= asset_path 'feuillage.jpg' %>);">
-  <div class="row">
+<div id="background" class="position-relative overflow-hidden p-3 text-center" style="background: url(<%= asset_path 'feuillage.jpg' %>);">
+  <div class="row d-flex align-items-center">
 
-    <div class="col-lg-5 d-flex flex-column">
+    <div id="colleft" class="col-lg-5 d-flex flex-column justify-content-center">
         <%= link_to "Teste les prénoms", quiz_path, class:"btn btn-info mb-2" %>
         <%= link_to "Connais-tu leurs anecdotes ?", quiz_fun_path, class:"btn btn-primary mb-2" %>
         <%= link_to "Annuaire", users_path, class:"btn btn-secondary mb-2" %>
     </div>
 
-    <div class="col-lg-7 jumbotron" id="jumbo">
+    <div id="jumbo" class="col-lg-6 jumbotron m-2" >
       <h1 class="display-4 font-weight-normal">Owimbowe</h1>
       <p class="lead font-weight-normal">Une mémoire de Lion</p>
     </div>

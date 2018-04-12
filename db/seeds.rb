@@ -48,12 +48,16 @@ usertable.each do |user|
     :growth => user[:growth],
     :product => user[:product],
     :sales => user[:sales],
-    :fun_fact_one => user[:funfact]
-    # :avatar => File.open("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}", 'rb')
+    :fun_fact_one => user[:funfact],
+    :stats => {:guessed_fun => [], :guessed_names => []}
   )
   created_user.save
-
-  created_user.avatar = File.new(Rails.root.join('https://s3.eu-west-3.amazonaws.com/trombilion/', user[:photopath]), 'rb')
+  photolink = Rails.root.join('app/assets/images/', user[:photopath])
+  if File.exist?(photolink)
+    created_user.avatar = File.new(photolink, 'rb')
+  else
+    created_user.avatar = File.new(Rails.root.join('app/assets/images/lion-avatar.png'), 'rb')
+  end
   created_user.save
 
 end

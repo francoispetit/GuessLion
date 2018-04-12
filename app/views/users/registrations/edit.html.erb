@@ -7,22 +7,22 @@
 
   <div class="form-group">
     <%= f.label :avatar, class: 'col-sm-2 control-label'  %>
-    <div class="col-sm-6">
+    <div>
         <%= f.file_field :avatar %>
     </div>
   </div>
 
   <div class="field">
     <%= f.label :first_name %><br />
-    <div class="col-sm-6">
-      <%= f.text_field :first_name, autofocus: true, class: 'form-control' %>
+    <div>
+      <%= f.text_field :first_name, autofocus: true %>
     </div>
   </div>
 
   <div class="field">
     <%= f.label :last_name %><br />
-    <div class="col-sm-6">
-      <%= f.text_field :last_name, autofocus: true, class: 'form-control' %>
+    <div>
+      <%= f.text_field :last_name, autofocus: true %>
     </div>
   </div>
 

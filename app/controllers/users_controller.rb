@@ -17,11 +17,14 @@ class UsersController < ApplicationController
       else
         if current_user.stats[:guessed_names].include?(user.id)
           @users_guessed << user.id
+
         else
           @users_not_guessed << user.id
+
         end
         @name_list << user.first_name
       end
+
     end
 
 
@@ -32,12 +35,14 @@ class UsersController < ApplicationController
     @name_list.delete(@user_to_guess[0].first_name)
 
     @name_proposal = @name_list.take(3) << @user_to_guess[0].first_name
-
   end
 
   def check
     if params[:commit] == User.find(params[:guess_id]).first_name
+      current_user.stats[:guessed_names] << params[:guess_id].to_i
+      current_user.save
       flash[:success] = "Oui, c'est bien #{User.find(params[:guess_id]).first_name}"
+
     else
       flash[:danger] = "Non, c'était #{User.find(params[:guess_id]).first_name}"
     end
@@ -77,6 +82,8 @@ class UsersController < ApplicationController
 
   def check_fun
     if params[:commit] == User.find(params[:guess_id]).fun_fact_one
+      current_user.stats[:guessed_fun] << params[:guess_id].to_i
+      current_user.save
       flash[:success] = "Oui, c'est bien ça"
     else
       flash[:danger] = "Non, va lui demander !"
