@@ -3,5 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.bgimg {
+#maincontainer {
+  height:100%;
+}
+
+#mainrow {
+  height:100%;
+}
+
+
+#background {
+  height:100%;
+}
+
+#background .row {
+}
+
+#jumbo {
+  max-height: 200px;
+}
+
+#jumbo h1, p {
+    color: green;
 }

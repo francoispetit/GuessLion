@@ -15,6 +15,7 @@ gem 'groupdate'
 gem 'nested_form_fields'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'aws-sdk-s3'
 gem 'dotenv-rails'
 gem "font-awesome-rails"
 gem 'gon'

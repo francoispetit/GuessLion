@@ -53,7 +53,7 @@ usertable.each do |user|
   )
   created_user.save
 
-  created_user.avatar = File.open(File.join('https://s3.eu-west-3.amazonaws.com/trombilion/', user[:photopath]), 'rb')
+  created_user.avatar = File.new(Rails.root.join('https://s3.eu-west-3.amazonaws.com/trombilion/', user[:photopath]), 'rb')
   created_user.save
 
 end
