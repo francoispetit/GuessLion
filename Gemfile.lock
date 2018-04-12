@@ -864,6 +864,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  aws-sdk-s3
   better_errors
   binding_of_caller
   bootstrap (~> 4.0.0)

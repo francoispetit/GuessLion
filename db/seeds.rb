@@ -10,9 +10,8 @@
 
 require 'google_drive'
 
-session = GoogleDrive::Session.from_service_account_key(
-    "driveconfig.json")
-ws = session.spreadsheet_by_key("1Pn1_-YvROQJEZDxL2At_aSjYn9tMXo826yk0EvC_Gig").worksheets[0]
+session = GoogleDrive::Session.from_service_account_key("driveconfig.json")
+ws = session.spreadsheet_by_key("1Pn1_-YvROQJEZDxL2At_aSjYn9tMXo826yk0EvC_Gig").worksheets[1]
 
 User.delete_all
 
@@ -25,16 +24,15 @@ i = 0
     hashuser[:last_name] = ws[row,2]
     hashuser [:female] = ws[row,3]
     hashuser[:email] = ws[row,4]
-    hashuser[:funfact] = ws[row,7]
-    hashuser [:linkedin] = ws[row,8]
-    hashuser [:dev] = ws[row,9]
-    hashuser [:product] = ws[row,10]
-    hashuser [:growth] = ws[row,12]
-    hashuser [:sales] = ws[row,11]
-    hashuser [:ops] = ws[row,13]
-    hashuser[:photopath] = ws[row,5] + ws[row,6] + ".jpg"
+    hashuser[:funfact] = ws[row,8]
+    hashuser [:linkedin] = ws[row,9]
+    hashuser [:dev] = ws[row,10]
+    hashuser [:product] = ws[row,11]
+    hashuser [:growth] = ws[row,13]
+    hashuser [:sales] = ws[row,12]
+    hashuser [:ops] = ws[row,14]
+    hashuser[:photopath] = ws[row,7]
     usertable << hashuser
-    binding.pry
     i += 1
 end
 
@@ -53,11 +51,9 @@ usertable.each do |user|
     :fun_fact_one => user[:funfact]
     # :avatar => File.open("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}", 'rb')
   )
-  binding.pry
-  photo = session.file_by_title(user[:photopath])
-  photo.download_to_file("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}")
-  binding.pry
-  created_user.avatar = File.open("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}", 'rb')
+  created_user.save
+
+  created_user.avatar = File.new(Rails.root.join('https://s3.eu-west-3.amazonaws.com/trombilion/', user[:photopath]), 'rb')
   created_user.save
 
 end
