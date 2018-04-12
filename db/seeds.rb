@@ -10,8 +10,7 @@
 
 require 'google_drive'
 
-session = GoogleDrive::Session.from_service_account_key(
-    "driveconfig.json")
+session = GoogleDrive::Session.from_service_account_key(ENV['DRIVECONFIG'])
 ws = session.spreadsheet_by_key("1Pn1_-YvROQJEZDxL2At_aSjYn9tMXo826yk0EvC_Gig").worksheets[0]
 
 User.delete_all
@@ -53,11 +52,8 @@ usertable.each do |user|
     :fun_fact_one => user[:funfact]
     # :avatar => File.open("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}", 'rb')
   )
-  binding.pry
-  photo = session.file_by_title(user[:photopath])
-  photo.download_to_file("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}")
-  binding.pry
-  created_user.avatar = File.open("#{Rails.root}/app/assets/images/medium/#{user[:photopath]}", 'rb')
+
+  created_user.avatar = File.open('https://s3.eu-west-3.amazonaws.com/trombilion/#{user[:photopath]}', 'rb')
   created_user.save
 
 end
