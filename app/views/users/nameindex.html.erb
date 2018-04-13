@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+
+    <% @users.each do |user| %>
+      <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card border-light">
+
+          <%= image_tag user.avatar.url(:thumb), class:"rounded mx-auto d-block", style:'height:90;width:120px;' %>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

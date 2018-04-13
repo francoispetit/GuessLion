@@ -50,6 +50,64 @@
   </div>
 
   <div class="field">
+    <%= f.label :fun_fact_one %><br />
+    <div>
+      <%= f.text_area :fun_fact_one, autofocus: true, cols: 50, rows: 10 %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :linkedin_url %><br />
+    <div>
+      <%= f.text_field :linkedin_url, autofocus: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :twitter_url %><br />
+    <div>
+      <%= f.text_field :twitter_url, autofocus: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :dev %><br />
+    <div>
+      <%= f.select :dev, options_for_select([ "mentor", "apprend", "non" ], resource[:dev]) %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :growth %><br />
+    <div>
+      <%= f.select :growth, options_for_select([ "mentor", "apprend", "non" ], resource[:dev]) %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :product %><br />
+    <div>
+      <%= f.select :product, options_for_select([ "mentor", "apprend", "non" ], resource[:dev]) %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :sales %><br />
+    <div>
+      <%= f.select :sales, options_for_select([ "mentor", "apprend", "non" ], resource[:dev]) %>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :isfemale, "Coche si tu es une fille" %><br />
+    <div>
+      <%= f.check_box :isfemale, autofocus: true %>
+    </div>
+  </div>
+
+
+  <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>

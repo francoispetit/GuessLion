@@ -13,13 +13,20 @@
               <p><small class="card-text mb-auto font-italic"><%= user.fun_fact_one %></small></p>
           </div>
 
-            <% if user.linkedin_url != nil %>
+
             <div class="card-footer">
+              <% if user.linkedin_url != '#' %>
               <%= link_to user.linkedin_url do %>
                 <%= fa_icon "linkedin", style: 'color:blue' %>
               <% end %>
-              </div>
-            <% end %>
+              <% end %>
+              <% if user.twitter_url != nil %>
+              <%= link_to user.linkedin_url do %>
+                <%= fa_icon "twitter", style: 'color:lightblue' %>
+              <% end %>
+              <% end %>
+            </div>
+
 
           <div class="card-footer">
             <p>Je peux vous aider avec</p>
@@ -42,13 +49,13 @@
             <% if user.dev == "apprend" %>
             <span class="badge badge-secondary"> <%= fa_icon "code" %> dev </span>
             <% end %>
-            <% if user.growth == "mentor" %>
+            <% if user.growth == "apprend" %>
             <span class="badge badge-secondary"> <%= fa_icon "chart-line" %> growth </span>
             <% end %>
-            <% if user.product == "mentor" %>
+            <% if user.product == "apprend" %>
             <span class="badge badge-secondary"> <%= fa_icon "lightbulb" %> product </span>
             <% end %>
-            <% if user.sales == "mentor" %>
+            <% if user.sales == "apprend" %>
             <span class="badge badge-secondary"> <%= fa_icon "bullseye" %> sales </span>
             <% end %>
           </div>

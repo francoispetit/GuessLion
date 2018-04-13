@@ -2,12 +2,12 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "Si c'est ta première connexion, entre ton email au format suivant : prenomnom@mail.com (sans accent ni espace). \r\n Tu pourras ensuite éditer ton profil" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :password, "Mot de passe. Si c'est ta première connexion, entre '123456'" %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 

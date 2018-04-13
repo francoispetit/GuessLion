@@ -1,40 +1,22 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @users = User.all
   end
 
   def quiz
-    @users_guessed = []
-    @users_not_guessed = []
-    @name_list = []
-    @name_proposal = []
 
-    User.all.each do |user|
-      if current_user.stats == {}
-        current_user.stats[:guessed_names] = []
-        @users_not_guessed << user.id
-      else
-        if current_user.stats[:guessed_names].include?(user.id)
-          @users_guessed << user.id
-
-        else
-          @users_not_guessed << user.id
-
-        end
-        @name_list << user.first_name
-      end
-
-    end
-
-
-
-    @users_not_guessed.delete(current_user.id)
+    set_names
 
     @user_to_guess = User.find(@users_not_guessed.take(1))
     @name_list.delete(@user_to_guess[0].first_name)
-
-    @name_proposal = @name_list.take(3) << @user_to_guess[0].first_name
+    if @user_to_guess[0].isfemale == true
+      @name_proposal = @name_list[:girl].take(3) << @user_to_guess[0].first_name
+    else
+      @name_proposal = @name_list[:boy].take(3) << @user_to_guess[0].first_name
+    end
   end
 
   def check
@@ -88,6 +70,34 @@ class UsersController < ApplicationController
     else
       flash[:danger] = "Non, va lui demander !"
     end
+  end
+
+  private
+
+  def set_names
+    @users_guessed = []
+    @users_not_guessed = []
+    @name_list = {:boy => [], :girl => []}
+    @name_proposal = []
+
+    User.all.each do |user|
+      if current_user.stats == {}
+        current_user.stats[:guessed_names] = []
+        @users_not_guessed << user.id
+      else
+        if current_user.stats[:guessed_names].include?(user.id)
+          @users_guessed << user.id
+        else
+          @users_not_guessed << user.id
+        end
+        if user.isfemale == true
+        @name_list[:girl] << user.first_name
+        else
+        @name_list[:boy] << user.first_name
+        end
+      end
+    end
+    @users_not_guessed.delete(current_user.id)
   end
 
 end

@@ -2,9 +2,15 @@
   <div class="row d-flex align-items-center">
 
     <div id="colleft" class="col-lg-5 d-flex flex-column justify-content-center">
+
+      <% if user_signed_in? %>
         <%= link_to "Teste les prénoms", quiz_path, class:"btn btn-info mb-2" %>
         <%= link_to "Connais-tu leurs anecdotes ?", quiz_fun_path, class:"btn btn-primary mb-2" %>
         <%= link_to "Annuaire", users_path, class:"btn btn-secondary mb-2" %>
+      <% else %>
+        <li><%= link_to "Connecte-toi", new_user_session_path, class:"btn btn-primary mb-2" %></li>
+      <% end %>
+
     </div>
 
     <div id="jumbo" class="col-lg-6 jumbotron m-2" >
